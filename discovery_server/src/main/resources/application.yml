@@ -1,0 +1,5 @@
+spring:
+  application.name: discovery_server
+  config:
+    import: optional:configserver:${CONFIG_SERVER_URL}
+  cloud.config.uri: ${CONFIG_SERVER_URL}
