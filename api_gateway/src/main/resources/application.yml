@@ -1,5 +1,5 @@
 spring:
-  application.name: api_gateway
+  application.name: api-gateway
   config:
     import: optional:configserver:${CONFIG_SERVER_URL}
   cloud.config.uri: ${CONFIG_SERVER_URL}
