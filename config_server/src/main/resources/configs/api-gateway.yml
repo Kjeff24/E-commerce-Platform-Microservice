@@ -1,0 +1,43 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_DEFAULT_URL}
+  instance:
+    hostname: ${GATEWAY_HOST_NAME}
+    instance-id: ${spring.application.name}:${random.uuid}
+
+management:
+  tracing.sampling.probability: 1
+
+server:
+  port: 8765
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes[0]:
+        id: product-service
+        uri: lb://product-service
+        predicates[0]: Path=/api/v1/product-service/**
+      routes[1]:
+        id: order-service
+        uri: lb://order-service
+        predicates[0]: Path=/api/v1/order-service/**
+      routes[2]:
+        id: shopping-cart-service
+        uri: lb://shopping-cart-service
+        predicates[0]: Path=/api/v1/shopping-cart-service/**
+      routes[3]:
+        id: payment-service
+        uri: lb://payment-service
+        predicates[0]: Path=/api/v1/payment-service/**
+      routes[4]:
+        id: notification-service
+        uri: lb://notification-service
+        predicates[0]: Path=/api/v1/notification-service/**
+
+
