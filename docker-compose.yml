@@ -1,6 +1,7 @@
 version: '3.8'
 
 services:
+  # PostgreSQL Database
   postgres:
     image: postgres:latest
     container_name: postgres-keycloak
@@ -13,6 +14,7 @@ services:
     volumes:
       - ./postgres_data:/var/lib/postgresql/data
 
+  # Keycloak Server
   keycloak:
     image: quay.io/keycloak/keycloak:26.0.0
     container_name: keycloak
@@ -46,14 +48,34 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: ${RABBITMQ_USERNAME}
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD}
-    networks:
-      - rabbit-mq-network
 
+  # Zipkin Service
   zipkin:
     image: openzipkin/zipkin:3
     container_name: zipkin
     ports:
       - "9411:9411"
+
+  # Prometheus Service
+  prometheus:
+    image: prom/prometheus:v2.53.4
+    container_name: prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+
+  # Grafana Service
+  #  default admin user credentials are admin/admin.
+  grafana:
+    image: grafana/grafana:11.6.0
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+    volumes:
+      - ./grafana_data:/var/lib/grafana
 
 volumes:
   postgres_data:
