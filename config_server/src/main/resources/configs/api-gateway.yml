@@ -40,4 +40,51 @@ spring:
         uri: lb://notification-service
         predicates[0]: Path=/api/v1/notification-service/**
 
+      # Routes for metrics
+      routes[5]:
+        id: product-service-metrics
+        uri: lb://product-service
+        predicates:
+          - Path=/metrics/product-service
+        filters:
+          - RewritePath=/metrics/product-service, /actuator/prometheus
+          - PreserveHostHeader
+          - RemoveRequestHeader=Cookie
+      routes[6]:
+        id: order-service-metrics
+        uri: lb://order-service
+        predicates:
+          - Path=/metrics/order-service
+        filters:
+          - RewritePath=/metrics/order-service, /actuator/prometheus
+          - PreserveHostHeader
+          - RemoveRequestHeader=Cookie
+      routes[7]:
+        id: shopping-cart-service-metrics
+        uri: lb://shopping-cart-service
+        predicates:
+          - Path=/metrics/shopping-cart-service
+        filters:
+          - RewritePath=/metrics/shopping-cart-service, /actuator/prometheus
+          - PreserveHostHeader
+          - RemoveRequestHeader=Cookie
+      routes[8]:
+        id: payment-service-metrics
+        uri: lb://payment-service
+        predicates:
+          - Path=/metrics/payment-service
+        filters:
+          - RewritePath=/metrics/payment-service, /actuator/prometheus
+          - PreserveHostHeader
+          - RemoveRequestHeader=Cookie
+      routes[9]:
+        id: notification-service-metrics
+        uri: lb://notification-service
+        predicates:
+          - Path=/metrics/notification-service
+        filters:
+          - RewritePath=/metrics/notification-service, /actuator/prometheus
+          - PreserveHostHeader
+          - RemoveRequestHeader=Cookie
+
 
