@@ -4,6 +4,7 @@ import com.bexos.product_catalog_service.dto.ProductRequest;
 import com.bexos.product_catalog_service.dto.ProductResponse;
 import com.bexos.product_catalog_service.exception.BadRequestException;
 import com.bexos.product_catalog_service.exception.NotFoundException;
+import com.bexos.product_catalog_service.model.Category;
 import com.bexos.product_catalog_service.model.Product;
 import com.bexos.product_catalog_service.repository.CategoryRepository;
 import com.bexos.product_catalog_service.repository.ProductRepository;
@@ -22,11 +23,13 @@ public class ProductServiceImpl implements ProductService {
     private final ModelMapper modelMapper;
 
     public ProductResponse createProduct(ProductRequest productRequest) {
-        if (!categoryRepository.existsByName(productRequest.getCategory())) {
-            throw new BadRequestException("Category does not exist: " + productRequest.getCategory());
-        }
+        Category category = categoryRepository.findById(productRequest.getCategory()).orElseThrow(() ->
+                new BadRequestException("Category not found"));
+        Product product = modelMapper.map(productRequest, Product.class);
+        product.setCategory(category);
+
         return modelMapper.map(productRepository
-                .save(modelMapper.map(productRequest, Product.class)), ProductResponse.class);
+                .save(product), ProductResponse.class);
     }
 
     public List<ProductResponse> getAllProducts() {
