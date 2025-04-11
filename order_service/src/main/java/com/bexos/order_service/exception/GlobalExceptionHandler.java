@@ -1,6 +1,6 @@
 package com.bexos.order_service.exception;
 
-import com.bexos.product_catalog_service.dto.ExceptionResponse;
+import com.bexos.order_service.dto.ExceptionResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
