@@ -11,8 +11,8 @@ import java.util.List;
 public class OrderRequest {
     @NotNull(message = "userId field is required")
     private Long userId;
-    @NotNull(message = "orderItems field is required")
-    @NotEmpty(message = "orderItems cannot be empty")
+    @NotNull(message = "items field is required")
+    @NotEmpty(message = "items cannot be empty")
     @Valid
-    private List<OrderItemRequest> orderItems;
+    private List<OrderItemRequest> items;
 }

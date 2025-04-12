@@ -34,9 +34,9 @@ public class Order {
     @Builder.Default
     private LocalDateTime orderDate = LocalDateTime.now();
     @Enumerated(EnumType.STRING)
-    private OrderStatus status;
+    @Builder.Default
+    private OrderStatus status = OrderStatus.PLACED;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "order_id")
     private List<OrderItem> items;
 }
