@@ -13,9 +13,9 @@ spring:
         format_sql: true
     database: postgresql
 
-    # RabbitMQ config
-    rabbitmq:
-      host: ${RABBITMQ_HOST}
-      port: ${RABBITMQ_PORT}
-      username: ${RABBITMQ_USERNAME}
-      password: ${RABBITMQ_PASSWORD}
+  # RabbitMQ config
+  rabbitmq:
+    host: ${RABBITMQ_HOST}
+    port: ${RABBITMQ_PORT}
+    username: ${RABBITMQ_USERNAME}
+    password: ${RABBITMQ_PASSWORD}
