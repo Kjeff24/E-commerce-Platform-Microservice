@@ -11,7 +11,5 @@ import java.util.List;
 public class OrderRequest {
     @NotNull(message = "userId field is required")
     private Long userId;
-    @ValidOrderStatus(OrderStatus.PLACED)
-    private OrderStatus status;
     private List<OrderItemRequest> orderItems;
 }

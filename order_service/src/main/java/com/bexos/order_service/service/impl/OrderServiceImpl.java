@@ -5,6 +5,7 @@ import com.bexos.order_service.dto.OrderResponse;
 import com.bexos.order_service.exception.NotFoundException;
 import com.bexos.order_service.model.Order;
 import com.bexos.order_service.model.OrderItem;
+import com.bexos.order_service.model.OrderStatus;
 import com.bexos.order_service.repository.OrderRepository;
 import com.bexos.order_service.service.OrderService;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,7 @@ public class OrderServiceImpl implements OrderService {
         order.setItems(orderRequest.getOrderItems().stream()
                 .map(orderItemRequest -> modelMapper.map(orderItemRequest, OrderItem.class))
                 .toList());
+        order.setStatus(OrderStatus.PLACED);
         return modelMapper.map(orderRepository.save(order), OrderResponse.class);
     }
 

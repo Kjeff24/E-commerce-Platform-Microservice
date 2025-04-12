@@ -31,7 +31,7 @@ public class Order {
     private Long userId;
     @Builder.Default
     private LocalDateTime orderDate = LocalDateTime.now();
-    private String status;
+    private OrderStatus status;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "order_id")
