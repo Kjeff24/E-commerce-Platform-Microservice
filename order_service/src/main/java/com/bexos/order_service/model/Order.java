@@ -2,6 +2,8 @@ package com.bexos.order_service.model;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -31,6 +33,7 @@ public class Order {
     private Long userId;
     @Builder.Default
     private LocalDateTime orderDate = LocalDateTime.now();
+    @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
