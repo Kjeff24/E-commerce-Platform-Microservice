@@ -39,4 +39,12 @@ public class OrderServiceImpl implements OrderService {
                 .map(order -> modelMapper.map(order, OrderResponse.class))
                 .toList();
     }
+
+    @Override
+    public void deleteOrderById(Long orderId) {
+        if(!orderRepository.existsById(orderId)) {
+            throw new NotFoundException("Order not found");
+        }
+        orderRepository.deleteById(orderId);
+    }
 }
