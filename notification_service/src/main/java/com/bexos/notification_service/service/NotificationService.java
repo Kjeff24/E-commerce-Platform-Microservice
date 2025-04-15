@@ -1,5 +1,6 @@
 package com.bexos.notification_service.service;
 
+import com.bexos.notification_service.dto.NotificationResponse;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 public interface NotificationService {
@@ -9,4 +10,5 @@ public interface NotificationService {
 
     void notifyAllUsers(String message);
 
+    NotificationResponse getNotification(Long notificationId);
 }

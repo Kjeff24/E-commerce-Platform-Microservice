@@ -1,6 +1,7 @@
 package com.bexos.notification_service.service.impl;
 
 import com.bexos.notification_service.dto.NotificationResponse;
+import com.bexos.notification_service.exception.BadRequestException;
 import com.bexos.notification_service.model.Notification;
 import com.bexos.notification_service.repository.NotificationRepository;
 import com.bexos.notification_service.service.NotificationService;
@@ -78,6 +79,12 @@ public class NotificationServiceImpl implements NotificationService {
                 emitters.remove(userId);
             }
         });
+    }
+
+    public NotificationResponse getNotification(Long notificationId) {
+        Notification notification = notificationRepository.findById(notificationId)
+                .orElseThrow(() -> new BadRequestException("Notification do not exist"));
+        return modelMapper.map(notification, NotificationResponse.class);
     }
 
 }
