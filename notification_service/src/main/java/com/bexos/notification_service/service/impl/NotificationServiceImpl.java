@@ -58,18 +58,6 @@ public class NotificationServiceImpl implements NotificationService {
         }
     }
 
-    public void notifyUser(Integer userId, NotificationResponse notifications) {
-        SseEmitter emitter = emitters.get(String.valueOf(userId));
-        if (emitter != null) {
-            try {
-                emitter.send(SseEmitter.event().data(notifications));
-            } catch (IOException e) {
-                emitter.completeWithError(e);
-                emitters.remove(String.valueOf(userId));
-            }
-        }
-    }
-
     public void notifyAllUsers(String message) {
         emitters.forEach((userId, emitter) -> {
             try {

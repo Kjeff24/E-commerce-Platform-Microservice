@@ -21,7 +21,7 @@ public class NotificationController {
     private final NotificationService notificationService;
 
     @GetMapping(value = "/subscribe/{userId}", consumes = MediaType.ALL_VALUE)
-    public SseEmitter subscribe((@PathVariable Long userId) {
+    public SseEmitter subscribe(@PathVariable Long userId) {
         return notificationService.subscribe(userId);
     }
 
