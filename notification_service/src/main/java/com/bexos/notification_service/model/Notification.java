@@ -27,5 +27,5 @@ public class Notification {
     private boolean isRead = false;
     @Builder.Default
     private LocalDateTime createdAt = LocalDateTime.now();
-    private String userId;
+    private Long userId;
 }
