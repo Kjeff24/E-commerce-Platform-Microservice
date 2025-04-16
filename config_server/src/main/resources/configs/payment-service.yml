@@ -19,3 +19,8 @@ spring:
       port: ${RABBITMQ_PORT}
       username: ${RABBITMQ_USERNAME}
       password: ${RABBITMQ_PASSWORD}
+
+paystack:
+  secret: ${PAYSTACK_SECRET}
+  verify:
+    url: ${PAYSTACK_VERIFICATION_URL}
