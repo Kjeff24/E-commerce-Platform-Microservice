@@ -4,9 +4,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public record PaymentResponse(
-        Integer id,
-        Integer userId,
-        Integer eventId,
+        Long id,
+        Long userId,
+        Long orderId,
         String reference,
         Double amount,
         String customerEmail,

@@ -4,10 +4,9 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record PaymentRequest(
-        @NotNull(message = "Event id is required")
-        Integer eventId,
-        Integer ticketTierId,
-        Integer quantityBought,
+        @NotNull(message = "orderId is required")
+        Long orderId,
+        Long price,
         @NotNull(message = "User id is required")
         Integer userId,
         @NotBlank(message = "Reference is required")
