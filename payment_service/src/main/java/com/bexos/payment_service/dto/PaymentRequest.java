@@ -8,7 +8,7 @@ public record PaymentRequest(
         Long orderId,
         Long price,
         @NotNull(message = "User id is required")
-        Integer userId,
+        Long userId,
         @NotBlank(message = "Reference is required")
         String reference,
         @NotBlank(message = "Phone Number is required")
