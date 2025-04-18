@@ -12,3 +12,40 @@ spring:
       hibernate:
         format_sql: true
     database: postgresql
+  security:
+    user:
+      name: user
+      password: password
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: ${ISSUER_URI}
+        registration:
+          ${KEYCLOAK_CLIENT_ID}:
+            client-id: ${KEYCLOAK_CLIENT_ID}
+            client-secret: ${KEYCLOAK_CLIENT_SECRET}
+            provider: keycloak
+            authorization-grant-type: authorization_code
+            scope: openid
+      authorizationserver:
+        client:
+          demo-client:
+            registration:
+              client-id: demo
+              client-secret: "{noop}secret"
+              authorization-grant-types: authorization_code, refresh_token
+              redirect-uris:
+                - "http://127.0.0.1:8082/login/oauth2/code/reg-client"
+                - "https://oauthdebugger.com/debug"
+              scopes: user.read, user.write, openid
+              client-authentication-methods: client_secret_basic
+
+  # RabbitMQ config
+  rabbitmq:
+    host: ${RABBITMQ_HOST}
+    port: ${RABBITMQ_PORT}
+    username: ${RABBITMQ_USERNAME}
+    password: ${RABBITMQ_PASSWORD}
+
+server.port: 8081
