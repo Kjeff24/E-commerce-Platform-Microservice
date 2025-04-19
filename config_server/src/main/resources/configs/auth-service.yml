@@ -40,6 +40,9 @@ spring:
                 - "https://oauthdebugger.com/debug"
               scopes: user.read, user.write, openid
               client-authentication-methods: client_secret_basic
+            token:
+              access-token-time-to-live: 2hr
+              refresh-token-time-to-live: 1d
 
   # RabbitMQ config
   rabbitmq:
